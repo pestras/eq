@@ -1,6 +1,6 @@
 {
-  "name": "eq",
-  "version": "1.0.0",
+  "name": "@pestras/eq",
+  "version": "1.0.1",
   "description": "Evaluates Math equations with variables",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/pestras/eq.git"
   },
-  "keywords": [],
+  "keywords": ["javascript", "typescript", "math", "equations"],
   "author": "",
   "license": "ISC",
   "bugs": {
