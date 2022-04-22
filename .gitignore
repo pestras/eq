@@ -105,3 +105,4 @@ dist
 
 # javascript
 *.js
+*.d.ts
