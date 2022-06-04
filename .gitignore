@@ -106,3 +106,6 @@ dist
 # javascript
 *.js
 *.d.ts
+
+#vscode
+.vscode

@@ -18,7 +18,7 @@ const fns: string[] = [
 export class Eq {
   private static eqs = new Map<string, Eq>();
 
-  private _eq: string = "";
+  private _eq = "";
   private parts: string[] = [];
   private refs: Record<`$${string}`, number> = {};
   private vars: Record<string, number> = {};
@@ -28,7 +28,7 @@ export class Eq {
   constructor(eq: string, name?: string) {
     this.init(eq);
 
-    if (!!name)
+    if (name)
         Eq.eqs.set(name, this);
   }
 
@@ -82,6 +82,7 @@ export class Eq {
 
     this.parts = [];
 
+    // deno-lint-ignore no-cond-assign
     while (match = /\([^(]+?\)/.exec(eq)?.[0] as string) {
       this.parts.push(match.slice(1, -1));
       eq = eq.replace(match, `$${this.parts.length - 1}`);
@@ -150,7 +151,7 @@ export class Eq {
   }
 
 
-  private evalPart(part: string, i: number) {
+  private evalPart(part: string) {
     part = part
       .replace(/\s?([$a-zA-Z][^\s]*)\s?/g, (_, $) => ` ${this.getValue($.trim())} `)
       .trim();
@@ -198,7 +199,7 @@ export class Eq {
     this.vars = vars;
 
     for (const [i, part] of this.parts.entries())
-      this.refs[`$${i}`] = this.evalPart(part, i);
+      this.refs[`$${i}`] = this.evalPart(part);
 
 
     return this.refs[`$${this.parts.length - 1}`];
