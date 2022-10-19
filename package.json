@@ -2,15 +2,41 @@
   "name": "@pestras/eq",
   "version": "1.0.1",
   "description": "Evaluates Math equations with variables",
-  "main": "index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/index.d.ts",
+  "main": "./lib/cjs/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "prepack": "npm run build",
+    "test": "exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pestras/eq.git"
   },
-  "keywords": ["javascript", "typescript", "math", "equations"],
+  "keywords": [
+    "javascript",
+    "typescript",
+    "math",
+    "equations"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,6 +44,6 @@
   },
   "homepage": "https://github.com/pestras/eq#readme",
   "devDependencies": {
-    "typescript": "^4.6.3"
+    "typescript": "^4.8.4"
   }
 }

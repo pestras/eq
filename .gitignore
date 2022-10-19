@@ -104,5 +104,4 @@ dist
 .tern-port
 
 # javascript
-*.js
-*.d.ts
+lib/
